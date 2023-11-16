@@ -8,18 +8,6 @@ from sqlalchemy.orm import sessionmaker, Session, relationship
 
 Base = declarative_base()
 
-# Design decisions: Firstly, Dialogflow intents and two entities('product' for different items and 'number' for the quantity of each item)
-# were created and basic flow of the bot was checked. In the database "products" table was created to store
-# products available in the Virtual Store, "carts" table stores the items user adds to their cart and "orders" table
-# stores cart items of each user after user confirms purchase. Since Dialogflow does not allow http urls,
-# ngrok was used to provide an https endpoint to connect the backend
-
-#Challenges: Had to do Dialogflow project 3 times. First time, Dialogflow agent kept training for 6+ hours and
-# I had to create an entirely new project. Second time I had to stop working midway but when I came back my project
-# wasn't getting displayed on Google Chrome(later I found out the project was accessible through Edge but it still wasn't visible on Chrome)
-# Making sure the python backend and Dialogflow are able to communicate was the biggest challenge I faced because
-# when Dialogflow says "Webhook call failed" finding the actual reason was hard
-#
 class Product(Base):
     __tablename__ = "products"
     product_id = Column(Integer, primary_key=True, index=True)
